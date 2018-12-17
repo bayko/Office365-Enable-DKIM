@@ -1,6 +1,10 @@
 Write-Host 'Connecting to 365' -foregroundcolor DarkGreen
 $Username = $args[0]
 $Password = $args[1]
+if ((!$Username) -or (!$Password)){
+    Write-Host 'You must supply global admin credentials as parameters when executing this script ( ie: C:\> .\STS-Office365-Provisioning.ps1 office365admin@company.com Password99 )' -foregroundcolor Red
+    Exit
+}
 $SecureStringPwd = $Password | ConvertTo-SecureString -AsPlainText -Force 
 $Creds = New-Object System.Management.Automation.PSCredential -ArgumentList $Username, $SecureStringPwd
 Connect-MsolService -Credential $Creds
