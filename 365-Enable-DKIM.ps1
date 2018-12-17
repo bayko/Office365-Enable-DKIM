@@ -1,3 +1,14 @@
+if (Get-Module -ListAvailable -Name MSOnline) {
+} else {
+    Write-Host "Microsoft Online Powershell Module is Missing, Please install before re-running script"
+    Exit
+}
+if (Get-Module -ListAvailable -Name Microsoft.Online.Sharepoint.Powershell) {
+} else {
+    Write-Host "Sharepoint Online Powershell Module is Missing, please install before re-running script"
+    Exit
+}
+
 Write-Host 'Connecting to 365' -foregroundcolor DarkGreen
 $Username = $args[0]
 $Password = $args[1]
